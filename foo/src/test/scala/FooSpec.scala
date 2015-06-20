@@ -24,4 +24,12 @@ class FooSpec extends UnitTestSpec {
         )
     }
 
+    it should "check time step" in {
+        val step = 10
+
+        val custom = new Simple(step)
+
+        assert(custom.timeStep > step)
+    }
+
 }
