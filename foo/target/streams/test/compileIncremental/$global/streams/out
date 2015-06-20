@@ -1,36 +1,29 @@
 [0m[[0mdebug[0m] [0m[0m
 [0m[[0mdebug[0m] [0mInitial source changes: [0m
 [0m[[0mdebug[0m] [0m	removed:Set()[0m
-[0m[[0mdebug[0m] [0m	added: Set(/Users/sadikovi/Developer/hello/foo/src/test/scala/ExampleSpec.scala, /Users/sadikovi/Developer/hello/foo/src/test/scala/FooSpec.scala, /Users/sadikovi/Developer/hello/foo/src/test/scala/UnitTestSpec.scala)[0m
+[0m[[0mdebug[0m] [0m	added: Set(/Users/sadikovi/Developer/hello/foo/src/test/scala/FooSpec.scala, /Users/sadikovi/Developer/hello/foo/src/test/scala/UnitTestSpec.scala)[0m
 [0m[[0mdebug[0m] [0m	modified: Set()[0m
 [0m[[0mdebug[0m] [0mRemoved products: Set()[0m
 [0m[[0mdebug[0m] [0mExternal API changes: API Changes: Set()[0m
 [0m[[0mdebug[0m] [0mModified binary dependencies: Set()[0m
-[0m[[0mdebug[0m] [0mInitial directly invalidated sources: Set(/Users/sadikovi/Developer/hello/foo/src/test/scala/ExampleSpec.scala, /Users/sadikovi/Developer/hello/foo/src/test/scala/FooSpec.scala, /Users/sadikovi/Developer/hello/foo/src/test/scala/UnitTestSpec.scala)[0m
+[0m[[0mdebug[0m] [0mInitial directly invalidated sources: Set(/Users/sadikovi/Developer/hello/foo/src/test/scala/FooSpec.scala, /Users/sadikovi/Developer/hello/foo/src/test/scala/UnitTestSpec.scala)[0m
 [0m[[0mdebug[0m] [0m[0m
 [0m[[0mdebug[0m] [0mSources indirectly invalidated by:[0m
 [0m[[0mdebug[0m] [0m	product: Set()[0m
 [0m[[0mdebug[0m] [0m	binary dep: Set()[0m
 [0m[[0mdebug[0m] [0m	external source: Set()[0m
-[0m[[0mdebug[0m] [0mAll initially invalidated sources: Set(/Users/sadikovi/Developer/hello/foo/src/test/scala/ExampleSpec.scala, /Users/sadikovi/Developer/hello/foo/src/test/scala/FooSpec.scala, /Users/sadikovi/Developer/hello/foo/src/test/scala/UnitTestSpec.scala)[0m
-[0m[[0mdebug[0m] [0mRecompiling all 3 sources: invalidated sources (3) exceeded 50.0% of all sources[0m
-[0m[[0minfo[0m] [0mCompiling 3 Scala sources to /Users/sadikovi/Developer/hello/foo/target/scala-2.10/test-classes...[0m
+[0m[[0mdebug[0m] [0mAll initially invalidated sources: Set(/Users/sadikovi/Developer/hello/foo/src/test/scala/FooSpec.scala, /Users/sadikovi/Developer/hello/foo/src/test/scala/UnitTestSpec.scala)[0m
+[0m[[0mdebug[0m] [0mRecompiling all 2 sources: invalidated sources (2) exceeded 50.0% of all sources[0m
+[0m[[0minfo[0m] [0mCompiling 2 Scala sources to /Users/sadikovi/Developer/hello/foo/target/scala-2.10/test-classes...[0m
 [0m[[0mdebug[0m] [0mGetting compiler-interface from component compiler for Scala 2.10.4[0m
 [0m[[0mdebug[0m] [0mGetting compiler-interface from component compiler for Scala 2.10.4[0m
-[0m[[0mdebug[0m] [0mRunning cached compiler 10355c6d, interfacing (CompilerInterface) with Scala compiler version 2.10.4[0m
+[0m[[0mdebug[0m] [0mRunning cached compiler 6700d594, interfacing (CompilerInterface) with Scala compiler version 2.10.4[0m
 [0m[[0mdebug[0m] [0mCalling Scala compiler with arguments  (CompilerInterface):[0m
 [0m[[0mdebug[0m] [0m	-bootclasspath[0m
 [0m[[0mdebug[0m] [0m	/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/jre/classes:/Users/sadikovi/.sbt/boot/scala-2.10.4/lib/scala-library.jar[0m
 [0m[[0mdebug[0m] [0m	-classpath[0m
-[0m[[0mdebug[0m] [0m	/Users/sadikovi/Developer/hello/foo/target/scala-2.10/test-classes:/Users/sadikovi/Developer/hello/foo/target/scala-2.10/classes:/Users/sadikovi/Developer/hello/bar/target/scala-2.10/classes:/Users/sadikovi/.ivy2/cache/org.scalatest/scalatest_2.10/bundles/scalatest_2.10-2.2.4.jar:/Users/sadikovi/.sbt/boot/scala-2.10.4/lib/scala-reflect.jar[0m
-[0m[[0mdebug[0m] [0mScala compilation took 2.493246 s[0m
-[0m[[0mdebug[0m] [0mInvalidating /Users/sadikovi/Developer/hello/foo/src/test/scala/ExampleSpec.scala...[0m
-[0m[[0mdebug[0m] [0mInvalidating (transitively) by inheritance from /Users/sadikovi/Developer/hello/foo/src/test/scala/ExampleSpec.scala...[0m
-[0m[[0mdebug[0m] [0mInitial set of included nodes: Set(/Users/sadikovi/Developer/hello/foo/src/test/scala/ExampleSpec.scala)[0m
-[0m[[0mdebug[0m] [0mInvalidated by transitive inheritance dependency: Set(/Users/sadikovi/Developer/hello/foo/src/test/scala/ExampleSpec.scala)[0m
-[0m[[0mdebug[0m] [0mThe /Users/sadikovi/Developer/hello/foo/src/test/scala/ExampleSpec.scala source file has the following implicit definitions changed:[0m
-[0m[[0mdebug[0m] [0m	convertToStringMustWrapper, convertToStringCanWrapper, convertToAnyShouldWrapper, convertNumericToPlusOrMinusWrapper, convertToEqualizer, convertToInAndIgnoreMethodsAfterTaggedAs, shorthandSharedTestRegistrationFunction, convertOptionToValuable, convertToRegexWrapper, unconstrainedEquality, convertToInAndIgnoreMethods, convertToStringShouldWrapper, convertSymbolToHavePropertyMatcherGenerator, shorthandTestRegistrationFunction.[0m
-[0m[[0mdebug[0m] [0mAll member reference dependencies will be considered within this context.[0m
+[0m[[0mdebug[0m] [0m	/Users/sadikovi/Developer/hello/foo/target/scala-2.10/test-classes:/Users/sadikovi/Developer/hello/foo/target/scala-2.10/classes:/Users/sadikovi/Developer/hello/bar/target/scala-2.10/classes:/Users/sadikovi/Developer/hello/foo/lib/joda-time-2.8.1.jar:/Users/sadikovi/.ivy2/cache/org.scalatest/scalatest_2.10/bundles/scalatest_2.10-2.2.4.jar:/Users/sadikovi/.sbt/boot/scala-2.10.4/lib/scala-reflect.jar[0m
+[0m[[0mdebug[0m] [0mScala compilation took 2.039782 s[0m
 [0m[[0mdebug[0m] [0mInvalidating /Users/sadikovi/Developer/hello/foo/src/test/scala/FooSpec.scala...[0m
 [0m[[0mdebug[0m] [0mInvalidating (transitively) by inheritance from /Users/sadikovi/Developer/hello/foo/src/test/scala/FooSpec.scala...[0m
 [0m[[0mdebug[0m] [0mInitial set of included nodes: Set(/Users/sadikovi/Developer/hello/foo/src/test/scala/FooSpec.scala)[0m
@@ -41,14 +34,12 @@
 [0m[[0mdebug[0m] [0mInvalidating /Users/sadikovi/Developer/hello/foo/src/test/scala/UnitTestSpec.scala...[0m
 [0m[[0mdebug[0m] [0mInvalidating (transitively) by inheritance from /Users/sadikovi/Developer/hello/foo/src/test/scala/UnitTestSpec.scala...[0m
 [0m[[0mdebug[0m] [0mInitial set of included nodes: Set(/Users/sadikovi/Developer/hello/foo/src/test/scala/UnitTestSpec.scala)[0m
-[0m[[0mdebug[0m] [0mIncluding /Users/sadikovi/Developer/hello/foo/src/test/scala/ExampleSpec.scala by /Users/sadikovi/Developer/hello/foo/src/test/scala/UnitTestSpec.scala[0m
 [0m[[0mdebug[0m] [0mIncluding /Users/sadikovi/Developer/hello/foo/src/test/scala/FooSpec.scala by /Users/sadikovi/Developer/hello/foo/src/test/scala/UnitTestSpec.scala[0m
-[0m[[0mdebug[0m] [0mInvalidated by transitive inheritance dependency: Set(/Users/sadikovi/Developer/hello/foo/src/test/scala/ExampleSpec.scala, /Users/sadikovi/Developer/hello/foo/src/test/scala/FooSpec.scala, /Users/sadikovi/Developer/hello/foo/src/test/scala/UnitTestSpec.scala)[0m
+[0m[[0mdebug[0m] [0mInvalidated by transitive inheritance dependency: Set(/Users/sadikovi/Developer/hello/foo/src/test/scala/FooSpec.scala, /Users/sadikovi/Developer/hello/foo/src/test/scala/UnitTestSpec.scala)[0m
 [0m[[0mdebug[0m] [0mThe /Users/sadikovi/Developer/hello/foo/src/test/scala/UnitTestSpec.scala source file has the following implicit definitions changed:[0m
 [0m[[0mdebug[0m] [0m	convertToStringMustWrapper, convertToStringCanWrapper, convertToAnyShouldWrapper, convertNumericToPlusOrMinusWrapper, convertToEqualizer, convertToInAndIgnoreMethodsAfterTaggedAs, shorthandSharedTestRegistrationFunction, convertOptionToValuable, convertToRegexWrapper, unconstrainedEquality, convertToInAndIgnoreMethods, convertToStringShouldWrapper, convertSymbolToHavePropertyMatcherGenerator, shorthandTestRegistrationFunction.[0m
 [0m[[0mdebug[0m] [0mAll member reference dependencies will be considered within this context.[0m
 [0m[[0mdebug[0m] [0mThe following member ref dependencies of /Users/sadikovi/Developer/hello/foo/src/test/scala/UnitTestSpec.scala are invalidated:[0m
-[0m[[0mdebug[0m] [0m	/Users/sadikovi/Developer/hello/foo/src/test/scala/ExampleSpec.scala[0m
 [0m[[0mdebug[0m] [0m	/Users/sadikovi/Developer/hello/foo/src/test/scala/FooSpec.scala[0m
 [0m[[0mdebug[0m] [0mNew invalidations:[0m
 [0m[[0mdebug[0m] [0m	Set()[0m

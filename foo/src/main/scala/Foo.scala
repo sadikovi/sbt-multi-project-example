@@ -27,8 +27,10 @@ object Foo {
         )
 
         println("# parsing file now")
-        
-        Source.fromURL(getClass.getResource("dataset.txt")).getLines.foreach(
+        val file = getClass.getResourceAsStream("/dataset.txt")
+        println(file)
+
+        Source.fromInputStream(file).getLines.foreach(
             x => {
                 val aNew = new Simple(Random.nextInt(this.Limit))
                 println(aNew.timeStep)

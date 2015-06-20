@@ -13,7 +13,7 @@ class FooSpec extends UnitTestSpec {
     }
 
     it should "read steps from text file" in {
-        val filepath = getClass.getResource("iterations.txt")
+        val filepath = getClass.getResource("/iterations.txt")
 
         Source.fromURL(filepath).getLines.foreach(
             x => {
