@@ -35,7 +35,6 @@ object HelloBuild extends Build {
             )
         )
 
-
     lazy val hello = project.
         in( file(".") ).
         dependsOn(bar, foo).
