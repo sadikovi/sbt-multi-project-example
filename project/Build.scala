@@ -32,6 +32,9 @@ object HelloBuild extends Build {
             aggregate in Test := false,
             unmanagedResourceDirectories in Compile ++= Seq(
                 baseDirectory.value / "config"
+            ),
+            libraryDependencies ++= Seq(
+            	"org.apache.spark" %% "spark-core" % "1.3.1" % "provided"
             )
         )
 
