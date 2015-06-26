@@ -1,0 +1,2 @@
+Spark path resolver
+Used in unit tests to pick up project directory from Spark
