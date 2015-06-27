@@ -62,6 +62,7 @@ trait LocalSparkContext {
     def setLoggingLevel(level:Level) {
         Logger.getLogger("org").setLevel(level)
         Logger.getLogger("akka").setLevel(level)
+        Logger.getRootLogger().setLevel(level)
     }
 
 
