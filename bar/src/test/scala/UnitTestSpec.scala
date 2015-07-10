@@ -20,5 +20,5 @@ trait ConditionSpec {
 
     def unless(expression: => Boolean): ConditionResolver = resolve(false, expression)
 
-    def once(expression: => Boolean): ConditionResolver = resolve(true, expression)
+    def `if`(expression: => Boolean): ConditionResolver = resolve(true, expression)
 }

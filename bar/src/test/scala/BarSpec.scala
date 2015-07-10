@@ -36,7 +36,7 @@ class Maid extends UnitTestSpec with ConditionSpec {
 
     val something = () => it must "[SKIP]: Mac OS X is not supported" ignore {}
 
-    unless (dinnerTime) skip (something) otherwise {
+    `if` (dinnerTime) skip (something) otherwise {
         it should "prepare dinner" in {
             true should be (true)
         }

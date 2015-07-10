@@ -15,11 +15,16 @@ object HelloBuild extends Build {
         parallelExecution in Test := false
     )
 
+    lazy val scaladocSettings = Defaults.defaultSettings ++ Seq(
+        scalacOptions in (Compile,doc) ++= Seq("-groups", "-implicits")
+    )
+
     lazy val bar = project.
         in( file("bar") ).
         disablePlugins(sbtassembly.AssemblyPlugin).
         settings(commonSettings: _*).
-        settings(testSettings: _*)
+        settings(testSettings: _*).
+        settings(scaladocSettings: _*)
 
     lazy val foo = project.
         in( file("foo") ).
@@ -28,6 +33,7 @@ object HelloBuild extends Build {
         aggregate(bar).
         settings(commonSettings: _*).
         settings(testSettings: _*).
+        settings(scaladocSettings: _*).
         settings(
             aggregate in Test := false,
             unmanagedResourceDirectories in Compile ++= Seq(
@@ -43,5 +49,6 @@ object HelloBuild extends Build {
         dependsOn(bar, foo).
         aggregate(bar, foo).
         settings(commonSettings: _*).
-        settings(testSettings: _*)
+        settings(testSettings: _*).
+        settings(scaladocSettings: _*)
 }
