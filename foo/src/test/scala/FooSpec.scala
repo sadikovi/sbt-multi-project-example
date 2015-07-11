@@ -32,4 +32,8 @@ class FooSpec extends UnitTestSpec {
         assert(custom.timeStep > step)
     }
 
+    it should "trigger Jenkins job" in {
+        true should be (true)
+    }
+
 }
