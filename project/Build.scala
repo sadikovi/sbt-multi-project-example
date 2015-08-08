@@ -40,7 +40,7 @@ object HelloBuild extends Build {
                 baseDirectory.value / "config"
             ),
             libraryDependencies ++= Seq(
-            	"org.apache.spark" %% "spark-core" % "1.3.1" % "provided"
+            	"org.apache.spark" %% "spark-core" % "1.4.0" % "provided"
             )
         )
 
