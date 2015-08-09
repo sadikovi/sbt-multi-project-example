@@ -94,4 +94,4 @@ RUN chmod u+x $SPARK_HOME/start-cluster.sh
 # 8080 - Spark main UI, 8081 - Spark worker node, 4040 - Spark job UI
 EXPOSE 22 8080 8081 4040
 
-CMD bash -C "/usr/local/spark/start-cluster.sh"; "/bin/bash"
+CMD bash -C "$SPARK_HOME/start-cluster.sh"; "/bin/bash"
