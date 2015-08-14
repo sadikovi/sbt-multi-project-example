@@ -12,5 +12,23 @@ cd ~/developer/your/project
 docker build -tq spark:1.4.0 .
 
 # once it is done, run container with image
-docker run -it -p 30022:22 -p 34040:4040 -p 38080:8080 -p 38081:8081 -p 38082:8082 -p 50070:50070 -p 58020:8020 -h sandbox --name=spark-container spark:1.4.0
+docker run -it \
+    -v /Users/sadikovi/Developer/hello:/dev/git/hello \
+    -p 30022:22 \
+    -p 34040:4040 -p 38080:8080 -p 38081:8081 -p 38082:8082 \
+    -p 50070:50070 -p 58020:8020 \
+    -h sandbox \
+    --name=spark-container spark:1.4.0
+```
+
+Work-flow:
+```shell
+# start container
+docker start spark-container
+
+# stop container
+docker stop spark-container
+
+# attach to the container
+docker attach spark-container
 ```

@@ -3,19 +3,23 @@
 # start ssh server in background
 sudo /usr/sbin/sshd -D &
 
-# start Spark cluster
-$SPARK_HOME/sbin/start-all.sh
-
 # start HDFS
 $HADOOP_INSTALL/sbin/start-dfs.sh
 
-# display message with all the things
+# create log directory for Spark
+hdfs dfs -mkdir -p /logs/spark
 
+# start Spark cluster
+$SPARK_HOME/sbin/start-all.sh
+
+# display message with all the things
 cat << EOF
-   _   ___ _____ _     ___          _
-  /_\ / __|_   _/_\   |   \ ___  __| |_____ _ _
- / _ \ (__  | |/ _ \  | |) / _ \/ _| / / -_) '_|
-/_/ \_\___| |_/_/ \_\ |___/\___/\__|_\_\___|_|
+ ____                   _    ____     _            _
+/ ___| _ __   __ _ _ __| | _|___ \ __| | ___   ___| | _____ _ __
+\___ \| '_ \ / _` | '__| |/ / __) / _` |/ _ \ / __| |/ / _ \ '__|
+ ___) | |_) | (_| | |  |   < / __/ (_| | (_) | (__|   <  __/ |
+|____/| .__/ \__,_|_|  |_|\_\_____\__,_|\___/ \___|_|\_\___|_|
+     |_|
 
 In the box:
 Essentials:
@@ -30,6 +34,8 @@ Distribution:
 Util:
     - git
     - sbt $SBT_VERSION
+    - vim
+    - nano
 
 # SPARK
 Spark cluser spins up 2 nodes, master url: spark://sandbox:7077

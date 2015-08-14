@@ -14,11 +14,9 @@ RUN apt-get install -y wget
 ################################################################
 # Install OpenJDK and Scala
 ################################################################
-
 ENV SCALA_VERSION=2.10.4
 
 RUN wget http://www.scala-lang.org/files/archive/scala-$SCALA_VERSION.deb
-
 RUN dpkg -i --ignore-depends=openjdk-6-jre,libjansi-java ./scala-$SCALA_VERSION.deb && \
     rm scala-$SCALA_VERSION.deb
 
@@ -28,7 +26,6 @@ RUN apt-get -fy install
 ################################################################
 # Install Oracle JDK 7
 ################################################################
-
 ENV INSTALL_DIR=/usr/share
 
 RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/7u80-b15/jdk-7u80-linux-x64.tar.gz
@@ -54,7 +51,6 @@ RUN apt-get install -y python-software-properties
 ################################################################
 # Install utilities (git, sbt, and etc.)
 ################################################################
-
 # git:latest
 RUN sudo apt-get install -y git
 
@@ -64,32 +60,18 @@ RUN wget https://dl.bintray.com/sbt/debian/sbt-$SBT_VERSION.deb
 RUN dpkg -i sbt-$SBT_VERSION.deb && \
     rm sbt-$SBT_VERSION.deb
 
+RUN apt-get install -y nano
+RUN apt-get install -y vim
+
 
 ################################################################
 # Install openssh server
 ################################################################
-
 # all the stuff with SSH to open localhost for Spark without password prompt
 RUN apt-get install -y openssh-server
 RUN mkdir /var/run/sshd
 RUN ssh-keygen -f ~/.ssh/id_rsa -t rsa -N ''
 RUN cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-
-
-################################################################
-# Install Apache Spark 1.4.0 with Hadoop 2.6
-################################################################
-RUN wget http://d3kbcqa49mib13.cloudfront.net/spark-1.4.0-bin-hadoop2.6.tgz
-
-RUN tar -xf spark-1.4.0-bin-hadoop2.6.tgz -C /usr/local/ && \
-    rm spark-1.4.0-bin-hadoop2.6.tgz
-
-RUN ln -s /usr/local/spark-1.4.0-bin-hadoop2.6 /usr/local/spark
-
-ENV SPARK_HOME=/usr/local/spark
-ENV PATH=$PATH:$SPARK_HOME/bin
-
-COPY ./docker/spark/spark-env.sh $SPARK_HOME/conf/
 
 
 ################################################################
@@ -100,6 +82,7 @@ ENV HADOOP_INSTALL=/usr/local/hadoop
 ENV PATH=$PATH:$HADOOP_INSTALL/bin:$HADOOP_INSTALL/sbin
 ENV HADOOP_MAPRED_HOME=$HADOOP_INSTALL
 ENV HADOOP_COMMON_HOME=$HADOOP_INSTALL
+ENV HADOOP_HOME=$HADOOP_INSTALL
 ENV HADOOP_HDFS_HOME=$HADOOP_INSTALL
 ENV YARN_HOME=$HADOOP_INSTALL
 ENV HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_INSTALL/lib/native
@@ -137,11 +120,31 @@ RUN sudo chown -R root:hadoop $HADOOP_STORE
 # update hdfs-site.xml
 COPY ./docker/hadoop/hdfs-site.xml $HADOOP_INSTALL/etc/hadoop/
 
-# formatting hadoop file system
-RUN hadoop namenode -format
+# format hadoop file system
+RUN hdfs namenode -format
+
+
+################################################################
+# Install Apache Spark 1.4.0 with Hadoop 2.6
+################################################################
+RUN wget http://d3kbcqa49mib13.cloudfront.net/spark-1.4.0-bin-hadoop2.6.tgz
+
+RUN tar -xf spark-1.4.0-bin-hadoop2.6.tgz -C /usr/local/ && \
+    rm spark-1.4.0-bin-hadoop2.6.tgz
+
+RUN ln -s /usr/local/spark-1.4.0-bin-hadoop2.6 /usr/local/spark
+
+ENV SPARK_HOME=/usr/local/spark
+ENV PATH=$PATH:$SPARK_HOME/bin
+
+COPY ./docker/spark/spark-env.sh $SPARK_HOME/conf/
+COPY ./docker/spark/spark-defaults.conf $SPARK_HOME/conf/
 
 
 
+################################################################
+# FINAL: copy run scripts, expose ports and start up system
+################################################################
 # Once everything is set up we copy files and start system
 # copy all necessary files for running Spark cluster
 COPY ./docker/start-system.sh /usr/local/
