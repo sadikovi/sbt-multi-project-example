@@ -5,7 +5,7 @@ import java.io.{InputStream, File, FileNotFoundException}
 
 
 /**
- * Factory for [[mypackage.Person]] instances.
+ * Configuration helper to parse `.config` files.
  *
  */
 object Configuration {

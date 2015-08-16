@@ -16,7 +16,8 @@ object HelloBuild extends Build {
     )
 
     lazy val scaladocSettings = Defaults.defaultSettings ++ Seq(
-        scalacOptions in (Compile,doc) ++= Seq("-groups", "-implicits")
+        scalacOptions in (Compile, doc) ++=
+            Seq("-groups", "-implicits", "-deprecation", "-unchecked")
     )
 
     lazy val bar = project.
@@ -40,7 +41,8 @@ object HelloBuild extends Build {
                 baseDirectory.value / "config"
             ),
             libraryDependencies ++= Seq(
-            	"org.apache.spark" %% "spark-core" % "1.4.0" % "provided"
+            	"org.apache.spark" %% "spark-core" % "1.4.0" % "provided",
+                "org.apache.spark" % "spark-mllib_2.10" % "1.4.0" % "provided"
             )
         )
 
