@@ -1,12 +1,14 @@
-package org.isa.linalg
+package org.isa.linalg.distributed
 
-import org.apache.spark.annotation.Experimental
+import org.isa.annotation.Experimental
 import org.apache.spark.rdd.RDD
 import org.apache.spark.mllib.linalg.{Vectors, Vector}
 import org.apache.spark.mllib.linalg.distributed.{IndexedRow, IndexedRowMatrix, MatrixEntry}
+import org.jblas.DoubleMatrix
 
 
 /**
+ * :: Experimental ::
  * Rich IndexedRowMatrix class.
  * Supports additional matrix operations.
  *
@@ -147,5 +149,33 @@ class RIndexedRowMatrix(
     def toRCoordinateMatrix: RCoordinateMatrix = {
         val matrix = toCoordinateMatrix
         new RCoordinateMatrix(matrix.entries, matrix.numRows(), matrix.numCols())
+    }
+
+
+    /**
+     * Converts matrix to local DoubleMatrix.
+     * @return DoubleMatrix instance
+     */
+    def toLocalMatrix: DoubleMatrix = {
+        val m = numRows().toInt
+        val n = numCols().toInt
+
+        require(m * n < 1E6, "Cannot convert to local matrix. Too many elements")
+
+        val elems= this.rows.collect
+        val local = DoubleMatrix.zeros(m, n)
+
+        elems.foreach(
+            row => {
+                val i = row.index.toInt
+                val values = row.vector.toArray
+
+                for (j <- 0 until n if values(j) != 0.0) {
+                    local.put(i, j, values(j))
+                }
+            }
+        )
+
+        local
     }
 }

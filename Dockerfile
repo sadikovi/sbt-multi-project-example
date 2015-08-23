@@ -141,7 +141,6 @@ COPY ./docker/spark/spark-env.sh $SPARK_HOME/conf/
 COPY ./docker/spark/spark-defaults.conf $SPARK_HOME/conf/
 
 
-
 ################################################################
 # FINAL: copy run scripts, expose ports and start up system
 ################################################################

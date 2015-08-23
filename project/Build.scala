@@ -42,7 +42,8 @@ object HelloBuild extends Build {
             ),
             libraryDependencies ++= Seq(
             	"org.apache.spark" %% "spark-core" % "1.4.0" % "provided",
-                "org.apache.spark" % "spark-mllib_2.10" % "1.4.0" % "provided"
+                "org.apache.spark" % "spark-mllib_2.10" % "1.4.0" % "provided",
+                "org.jblas" % "jblas" % "1.2.4"
             )
         )
 

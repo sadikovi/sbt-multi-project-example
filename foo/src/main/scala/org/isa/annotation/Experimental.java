@@ -1,4 +1,4 @@
-package org.apache.spark.annotation;
+package org.isa.annotation;
 
 import java.lang.annotation.*;
 
