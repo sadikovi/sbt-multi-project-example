@@ -4,12 +4,16 @@ import scala.io.Source
 import scala.util.{Try, Success, Failure}
 import java.io.{InputStream, File}
 
-object CONFIG_MODE extends Enumeration {
-    val OVERRIDE, IGNORE, THROW = Value
+/**
+ * Mode for duplicate keys. Override - overrides existing key, ignore - ignores newer key,
+ * throw - throws exception saying that key already exists.
+ */
+object DuplicateMode extends Enumeration {
+    val Override, Ignore, Throw = Value
 }
 
 /** Configuration parser */
-private[config] class Config(private val iter: Iterator[String], val mode: CONFIG_MODE.Value) {
+private[config] class Config(private val iter: Iterator[String], val mode: DuplicateMode.Value) {
     // Configuration is always scanned sequentially from beginning of the file. This allows us to
     // know the current section. Each key - value pair is stored as hashkey - value. Hashkey is a
     // some combination defined in `hashkey` method.
@@ -25,7 +29,7 @@ private[config] class Config(private val iter: Iterator[String], val mode: CONFI
     private val pairs: Map[String, String] = load(iter, mode)
 
     /** Returns configuration with default key rule */
-    def this(iter: Iterator[String]) = this(iter, CONFIG_MODE.OVERRIDE)
+    def this(iter: Iterator[String]) = this(iter, DuplicateMode.Override)
 
     /**
      * Load configuration. This is where all the fun happens.
@@ -33,7 +37,7 @@ private[config] class Config(private val iter: Iterator[String], val mode: CONFI
      * @param mode rule to insert key
      * @return map of key/value pairs from that configuration
      */
-    private def load(iter: Iterator[String], mode: CONFIG_MODE.Value): Map[String, String] = {
+    private def load(iter: Iterator[String], mode: DuplicateMode.Value): Map[String, String] = {
         var map: Map[String, String] = Map()
         var currentSection: String = defaultSection
         // zip iterator with index, so we know the line number
@@ -52,7 +56,8 @@ private[config] class Config(private val iter: Iterator[String], val mode: CONFI
                     case keyvalue if KEYVALUE_PATTERN.findFirstMatchIn(prepared).nonEmpty => {
                         val m = KEYVALUE_PATTERN.findFirstMatchIn(prepared).get
                         val (key, value) = (m.group("key"), m.group("value"))
-                        map = storeKeyInMap(map, key, currentSection, value, mode)
+                        map = storeKeyInMap(map, key, currentSection, value,
+                            _.stripPrefix("\"").stripSuffix("\""), mode)
                     }
                     case comment if COMMENT_PATTERN.findFirstMatchIn(prepared).nonEmpty => {}
                     case newline if NEWLINE_PATTERN.findFirstMatchIn(prepared).nonEmpty => {}
@@ -79,6 +84,7 @@ private[config] class Config(private val iter: Iterator[String], val mode: CONFI
      * @param key key
      * @param section section to store value for
      * @param value value
+     * @param modifier modifier for value before storing in map
      * @param mode enforcing rule to store key-value
      * @return updated pairs map
      */
@@ -87,18 +93,21 @@ private[config] class Config(private val iter: Iterator[String], val mode: CONFI
         key: String,
         section: String,
         value: String,
-        mode: CONFIG_MODE.Value
+        modifier: String => String,
+        mode: DuplicateMode.Value
     ): Map[String, String] = {
         val hash = hashkey(key, section)
+        // sadikovi: remove surrounding quotes for escaped values
+        val editedValue = modifier(value)
         if (map.contains(hash)) {
             mode match {
-                case CONFIG_MODE.OVERRIDE => map + (hash -> value)
-                case CONFIG_MODE.IGNORE => map
-                case CONFIG_MODE.THROW => throw new Exception("Key " + key + " for section " +
+                case DuplicateMode.Override => map + (hash -> editedValue)
+                case DuplicateMode.Ignore => map
+                case DuplicateMode.Throw => throw new Exception("Key " + key + " for section " +
                     section + " already exists")
             }
         } else {
-            map + (hash -> value)
+            map + (hash -> editedValue)
         }
     }
 
@@ -178,30 +187,33 @@ object Config {
     /**
      * Creates configuration from file path.
      * @param path file path
+     * @param mode parsing rule for duplicates, default is override
      * @return loaded configuration
      */
-    def fromPath(path: String): Config = {
+    def fromPath(path: String, mode: DuplicateMode.Value=DuplicateMode.Override): Config = {
         val iter = Source.fromFile(path).getLines()
-        new Config(iter)
+        new Config(iter, mode)
     }
 
     /**
      * Creates configuration from [[java.io.File]] object.
      * @param file File instance
+     * @param mode parsing rule for duplicates, default is override
      * @return loaded configuration
      */
-    def fromFile(file: File): Config = {
+    def fromFile(file: File, mode: DuplicateMode.Value=DuplicateMode.Override): Config = {
         val iter = Source.fromFile(file).getLines()
-        new Config(iter)
+        new Config(iter, mode)
     }
 
     /**
      * Creates configuration from stream.
      * @param stream InputStream instance
+     * @param mode parsing rule for duplicates, default is override
      * @return loaded configuration
      */
-    def fromStream(stream: InputStream): Config = {
+    def fromStream(stream: InputStream, mode: DuplicateMode.Value=DuplicateMode.Override): Config = {
         val iter = Source.fromInputStream(stream).getLines()
-        new Config(iter)
+        new Config(iter, mode)
     }
 }
