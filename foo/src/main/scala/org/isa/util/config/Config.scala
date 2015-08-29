@@ -196,7 +196,7 @@ object Config {
     }
 
     /**
-     * Creates configuration from [[java.io.File]] object.
+     * Creates configuration from `java.io.File` object.
      * @param file File instance
      * @param mode parsing rule for duplicates, default is override
      * @return loaded configuration
