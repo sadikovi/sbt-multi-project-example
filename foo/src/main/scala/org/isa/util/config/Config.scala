@@ -5,8 +5,10 @@ import scala.util.{Try, Success, Failure}
 import java.io.{InputStream, File}
 
 /**
- * Mode for duplicate keys. Override - overrides existing key, ignore - ignores newer key,
- * throw - throws exception saying that key already exists.
+ * Mode for duplicate keys.
+ * `Override` - overrides existing key.
+ * `Ignore` - ignores newer key.
+ * `Throw` - throws exception saying that key already exists.
  */
 object DuplicateMode extends Enumeration {
     val Override, Ignore, Throw = Value
