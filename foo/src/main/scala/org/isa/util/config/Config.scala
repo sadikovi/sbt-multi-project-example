@@ -146,7 +146,7 @@ private[config] class Config(private val iter: Iterator[String], val mode: Dupli
         value: String,
         func: String => T
     ): Option[T] = Try(func(value)) match {
-        case Success(a) => Some(a)
+        case Success(a) => Option(a)
         case Failure(e) => None
     }
 
