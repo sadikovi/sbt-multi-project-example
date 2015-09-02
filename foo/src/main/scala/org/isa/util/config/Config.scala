@@ -170,17 +170,17 @@ private[config] class Config(private val iter: Iterator[String], val mode: Dupli
     /** true, if configuration could not find any key-value pairs */
     def isEmpty: Boolean = pairs.isEmpty
 
-    def getString(key: String, section: String): Option[String] = getSome(key, section, _.toString)
-    def getString(key: String): Option[String] = getString(key, defaultSection)
+    def getString(key: String, section: String = defaultSection): Option[String] =
+        getSome(key, section, _.toString)
 
-    def getInt(key: String, section: String): Option[Int] = getSome(key, section, _.toInt)
-    def getInt(key: String): Option[Int] = getInt(key, defaultSection)
+    def getInt(key: String, section: String = defaultSection): Option[Int] =
+        getSome(key, section, _.toInt)
 
-    def getDouble(key: String, section: String): Option[Double] = getSome(key, section, _.toDouble)
-    def getDouble(key: String): Option[Double] = getDouble(key, defaultSection)
+    def getDouble(key: String, section: String = defaultSection): Option[Double] =
+        getSome(key, section, _.toDouble)
 
-    def getBoolean(key: String, section: String): Option[Boolean] = getSome(key, section, _.toBoolean)
-    def getBoolean(key: String): Option[Boolean] = getBoolean(key, defaultSection)
+    def getBoolean(key: String, section: String = defaultSection): Option[Boolean] =
+        getSome(key, section, _.toBoolean)
 }
 
 /** Configuration factory */
